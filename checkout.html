@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สรุปรายการสั่งซื้อ | KICKOFF PRO SOCCER</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0a0d14',
+                            card: '#121722',
+                            border: '#1e2638',
+                            lime: '#ccff00',
+                            limeHover: '#b8e600',
+                            cyan: '#00f2fe',
+                            accent: '#ff0055'
+                        }
+                    },
+                    fontFamily: {
+                        kanit: ['Kanit', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;1,800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+body {
+    font-family: 'Kanit', sans-serif;
+    background-color: #0a0d14;
+    color: #e2e8f0;
+}
+.glow-lime {
+    box-shadow: 0 0 25px rgba(204, 255, 0, 0.25);
+}
+.glow-cyan {
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.2);
+}
+.bg-grid-pattern {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0d14;
+}
+::-webkit-scrollbar-thumb {
+    background: #1e2638;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #ccff00;
+}
+
+    </style>
+</head>
+<body data-page="checkout" class="bg-brand-dark text-slate-200 antialiased min-h-screen flex flex-col justify-between selection:bg-brand-lime selection:text-black">
+
+    <!-- TOP PROMO BANNER -->
+    <!-- TOP PROMO BANNER -->
+    <div class="bg-gradient-to-r from-brand-lime via-brand-cyan to-brand-lime text-black font-semibold text-xs md:text-sm py-2 px-4 text-center tracking-wide overflow-hidden flex items-center justify-center gap-2">
+        <span><i class="fa-solid fa-bolt mr-1"></i> FLASH SALE! โค้ดส่วนลด <b>KICKOFF2026</b> ลดเพิ่ม 15% สตั๊ดรุ่นใหม่ส่งฟรีทั่วไทย</span>
+        <span class="hidden md:inline-block bg-black text-brand-lime px-2 py-0.5 rounded text-xs font-bold uppercase ml-2">จำกัดเวลา</span>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <!-- MAIN NAVBAR -->
+    <header class="sticky top-0 z-40 bg-brand-dark/95 backdrop-blur-md border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- BRAND LOGO -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+                    <div class="w-11 h-11 bg-brand-lime rounded-xl flex items-center justify-center text-black text-2xl font-black transform -rotate-6 shadow-lg shadow-brand-lime/20">
+                        <i class="fa-solid fa-futbol"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-tight text-white font-poppins italic">KICKOFF<span class="text-brand-lime">PRO</span></span>
+                        <span class="block text-[10px] text-slate-400 tracking-widest uppercase font-semibold">Soccer Equipment Store</span>
+                    </div>
+                </div>
+
+                <!-- NAVIGATION DESKTOP MENU (10 Pages Linkable) -->
+                <nav class="hidden lg:flex items-center gap-1 xl:gap-2 font-medium text-sm">
+                    <button onclick="navigateTo('home')" id="nav-home" class="nav-btn px-3 py-2 rounded-lg text-brand-lime font-bold hover:bg-brand-card transition"><i class="fa-solid fa-house mr-1"></i> หน้าแรก</button>
+                    <button onclick="navigateTo('boots')" id="nav-boots" class="nav-btn px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-brand-card transition"><i class="fa-solid fa-shoe-prints mr-1"></i> สตั๊ด</button>
+                    <button onclick="navigateTo('jerseys')" id="nav-jerseys" class="nav-btn px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-brand-card transition"><i class="fa-solid fa-shirt mr-1"></i> เสื้อแข่ง</button>
+                    <button onclick="navigateTo('gk_training')" id="nav-gk_training" class="nav-btn px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-brand-card transition"><i class="fa-solid fa-hand mr-1"></i> ถุงมือ&ซ้อม</button>
+                    <button onclick="navigateTo('deals')" id="nav-deals" class="nav-btn px-3 py-2 rounded-lg text-brand-accent font-bold hover:bg-brand-card transition"><i class="fa-solid fa-fire mr-1"></i> โปรโมชั่น</button>
+                    <button onclick="navigateTo('guide')" id="nav-guide" class="nav-btn px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-brand-card transition"><i class="fa-solid fa-ruler-combined mr-1"></i> คู่มือเลือก</button>
+                    <button onclick="navigateTo('blog')" id="nav-blog" class="nav-btn px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-brand-card transition"><i class="fa-solid fa-newspaper mr-1"></i> บล็อก</button>
+                    <button onclick="navigateTo('about')" id="nav-about" class="nav-btn px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-brand-card transition"><i class="fa-solid fa-store mr-1"></i> สาขา</button>
+                </nav>
+
+                <!-- RIGHT ACTIONS -->
+                <div class="flex items-center gap-3">
+                    <button onclick="navigateTo('tracking')" title="ติดตามพัสดุ" class="w-10 h-10 rounded-xl bg-brand-card border border-brand-border flex items-center justify-center text-slate-300 hover:text-brand-lime hover:border-brand-lime transition">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </button>
+
+                    <!-- CART BUTTON -->
+                    <button onclick="toggleCartDrawer()" class="relative px-4 py-2.5 rounded-xl bg-brand-lime hover:bg-brand-limeHover text-black font-bold flex items-center gap-2 transition shadow-lg shadow-brand-lime/10">
+                        <i class="fa-solid fa-cart-shopping text-lg"></i>
+                        <span class="hidden sm:inline">ตะกร้า</span>
+                        <span id="cart-count-badge" class="bg-black text-brand-lime w-6 h-6 rounded-full text-xs flex items-center justify-center font-extrabold">0</span>
+                    </button>
+
+                    <!-- MOBILE MENU TOGGLE -->
+                    <button onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 rounded-xl bg-brand-card border border-brand-border flex items-center justify-center text-slate-300 hover:text-white">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU OVERLAY -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-brand-border bg-brand-card px-4 py-4 space-y-2 text-sm font-medium">
+            <button onclick="navigateTo('home'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-brand-border text-brand-lime font-bold"><i class="fa-solid fa-house w-6"></i> หน้าแรก (Home)</button>
+            <button onclick="navigateTo('boots'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-brand-border"><i class="fa-solid fa-shoe-prints w-6"></i> หมวดหมู่รองเท้าสตั๊ด (Boots)</button>
+            <button onclick="navigateTo('jerseys'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-brand-border"><i class="fa-solid fa-shirt w-6"></i> เสื้อแข่ง & พรีวิวสกรีน (Jerseys)</button>
+            <button onclick="navigateTo('gk_training'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-brand-border"><i class="fa-solid fa-hand w-6"></i> ถุงมือ & อุปกรณ์ซ้อม (GK & Training)</button>
+            <button onclick="navigateTo('deals'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-brand-border text-brand-accent font-bold"><i class="fa-solid fa-fire w-6"></i> โปรโมชั่น & Clearance</button>
+            <button onclick="navigateTo('guide'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-brand-border"><i class="fa-solid fa-ruler-combined w-6"></i> คู่มือเลือกอุปกรณ์ & ไซส์ (Size Guide)</button>
+            <button onclick="navigateTo('blog'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-brand-border"><i class="fa-solid fa-newspaper w-6"></i> บล็อก & รีวิวอุปกรณ์ (Blog)</button>
+            <button onclick="navigateTo('about'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-brand-border"><i class="fa-solid fa-store w-6"></i> เกี่ยวกับเรา & หน้าร้าน (About & Stores)</button>
+            <button onclick="navigateTo('checkout'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-brand-border"><i class="fa-solid fa-credit-card w-6"></i> สรุปรายการสั่งซื้อ (Checkout)</button>
+            <button onclick="navigateTo('tracking'); toggleMobileMenu()" class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-brand-border"><i class="fa-solid fa-truck-fast w-6"></i> ติดตามสถานะพัสดุ (Order Tracker)</button>
+        </div>
+    </header>
+
+    <!-- MAIN DYNAMIC CONTENT -->
+    <main id="main-content" class="flex-grow">
+        <!-- 9. PAGE: CHECKOUT -->
+        <section id="page-checkout" class="py-12">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-brand-card border border-brand-border rounded-3xl p-8 space-y-6">
+                    <h1 class="text-2xl font-bold text-white"><i class="fa-solid fa-credit-card text-brand-lime mr-3"></i>สรุปรายการสั่งซื้อ & ชำระเงิน</h1>
+                    
+                    <div id="checkout-items-list" class="divide-y divide-brand-border">
+                        <!-- Loaded from cart state -->
+                    </div>
+
+                    <div class="bg-brand-dark p-4 rounded-xl border border-brand-border space-y-2">
+                        <div class="flex justify-between text-sm"><span>ยอดรวมสินค้า</span><span id="checkout-subtotal">฿0</span></div>
+                        <div class="flex justify-between text-sm"><span>ค่าจัดส่ง</span><span class="text-brand-lime">ฟรี (Free Shipping)</span></div>
+                        <div class="flex justify-between text-lg font-bold text-white pt-2 border-t border-brand-border"><span>ยอดชำระสุทธิ</span><span id="checkout-total" class="text-brand-lime">฿0</span></div>
+                    </div>
+
+                    <!-- PAYMENT METHOD SIMULATION -->
+                    <div class="space-y-3">
+                        <label class="block text-sm font-bold text-white">เลือกช่องทางชำระเงิน</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="bg-brand-dark border border-brand-lime p-4 rounded-xl flex items-center gap-3 cursor-pointer">
+                                <input type="radio" name="payment" checked class="accent-brand-lime">
+                                <div><span class="block text-sm font-bold text-white">PromptPay QR Code</span><span class="text-[10px] text-slate-400">สแกนชำระทันที ไม่มีค่าธรรมเนียม</span></div>
+                            </label>
+                            <label class="bg-brand-dark border border-brand-border p-4 rounded-xl flex items-center gap-3 cursor-pointer">
+                                <input type="radio" name="payment" class="accent-brand-lime">
+                                <div><span class="block text-sm font-bold text-white">บัตรเครดิต / เดบิต</span><span class="text-[10px] text-slate-400">Visa, Mastercard, JCB</span></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button onclick="processOrder()" class="w-full py-4 bg-brand-lime text-black font-extrabold text-base rounded-xl hover:bg-brand-limeHover transition shadow-lg shadow-brand-lime/20">
+                        ยืนยันการชำระเงินและสั่งซื้อ
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- SHOPPING CART SLIDE-OVER DRAWER -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 pointer-events-none transition-opacity duration-300 opacity-0">
+        <div onclick="toggleCartDrawer()" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-brand-card border-l border-brand-border p-6 flex flex-col justify-between pointer-events-auto transform translate-x-full transition-transform duration-300 id-cart-panel">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b border-brand-border">
+                    <h3 class="text-xl font-bold text-white"><i class="fa-solid fa-cart-shopping text-brand-lime mr-2"></i>ตะกร้าสินค้า</h3>
+                    <button onclick="toggleCartDrawer()" class="w-8 h-8 rounded-lg bg-brand-dark text-slate-400 hover:text-white flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div id="cart-drawer-items" class="py-4 space-y-4 max-h-[60vh] overflow-y-auto">
+                    <!-- Dynamic Cart Items -->
+                </div>
+            </div>
+            <div class="pt-4 border-t border-brand-border space-y-4">
+                <div class="flex justify-between items-center text-lg font-bold">
+                    <span class="text-slate-300">รวมทั้งหมด:</span>
+                    <span id="cart-total-price" class="text-brand-lime text-2xl font-black">฿0</span>
+                </div>
+                <button onclick="toggleCartDrawer(); navigateTo('checkout');" class="w-full py-3.5 bg-brand-lime text-black font-extrabold rounded-xl hover:bg-brand-limeHover transition">
+                    ไปที่หน้าชำระเงิน <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-brand-border py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm text-slate-400">
+            <div class="space-y-3">
+                <span class="text-xl font-black text-white italic font-poppins">KICKOFF<span class="text-brand-lime">PRO</span></span>
+                <p class="text-xs leading-relaxed">ศูนย์รวมรองเท้าสตั๊ด เสื้อแข่งสโมสร และอุปกรณ์กีฬาฟุตบอลแท้ 100% พร้อมบริการเปลี่ยนไซส์ภายใน 7 วัน</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">หมวดสินค้า</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#" onclick="navigateTo('boots')" class="hover:text-brand-lime">รองเท้าสตั๊ดสายสปีด & คอนโทรล</a></li>
+                    <li><a href="#" onclick="navigateTo('jerseys')" class="hover:text-brand-lime">เสื้อแข่งสโมสรยุโรป & ไทยลีก</a></li>
+                    <li><a href="#" onclick="navigateTo('gk_training')" class="hover:text-brand-lime">ถุงมือประตูโฟมเยอรมัน</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">บริการลูกค้า</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#" onclick="navigateTo('guide')" class="hover:text-brand-lime">ตารางวัดไซส์ & ประเภทปุ่ม</a></li>
+                    <li><a href="#" onclick="navigateTo('tracking')" class="hover:text-brand-lime">ติดตามพัสดุเรียลไทม์</a></li>
+                    <li><a href="#" onclick="navigateTo('about')" class="hover:text-brand-lime">ที่ตั้งสาขาหน้าร้าน</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">ติดต่อเรา</h4>
+                <p class="text-xs"><i class="fa-solid fa-phone mr-2 text-brand-lime"></i>02-123-4567</p>
+                <p class="text-xs mt-1"><i class="fa-solid fa-envelope mr-2 text-brand-lime"></i>support@kickoffpro.com</p>
+                <div class="flex gap-3 text-lg mt-4 text-slate-300">
+                    <a href="#" class="hover:text-brand-lime"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="hover:text-brand-lime"><i class="fa-brands fa-line"></i></a>
+                    <a href="#" class="hover:text-brand-lime"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-brand-lime"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-xs text-slate-600 mt-12 pt-6 border-t border-brand-card">
+            © 2026 KICKOFF PRO SOCCER. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- APP LOGIC (self-contained, no external files needed) -->
+    <script>
+// =========================================================
+// KICKOFF PRO SOCCER - Shared App Logic (multi-page version)
+// This script is embedded directly in every page (self-contained, no external files needed)
+// =========================================================
+
+// PRODUCTS DATABASE
+const products = [
+    { id: 1, category: 'boots', stud: 'FG', name: 'Speed Pro Ultra FG', price: 8500, image: 'https://images.pexels.com/photos/10923069/pexels-photo-10923069.jpeg?auto=compress&cs=tinysrgb&w=800', badge: 'NEW 2026' },
+    { id: 2, category: 'boots', stud: 'AG', name: 'Control Master AG', price: 7200, image: 'https://images.pexels.com/photos/10923069/pexels-photo-10923069.jpeg?auto=compress&cs=tinysrgb&w=800', badge: 'BESTSELLER' },
+    { id: 3, category: 'boots', stud: 'TF', name: 'Turf Striker TF', price: 3900, image: 'https://images.pexels.com/photos/10923069/pexels-photo-10923069.jpeg?auto=compress&cs=tinysrgb&w=800', badge: 'POPULAR' },
+    { id: 4, category: 'jerseys', name: 'เสื้อแข่งสโมสร ลีกอันดับ 1 (Player Version)', price: 4600, image: 'https://images.pexels.com/photos/16678677/pexels-photo-16678677.jpeg?auto=compress&cs=tinysrgb&w=800', badge: 'OFFICIAL' },
+    { id: 5, category: 'jerseys', name: 'เสื้อแข่งเหย้า Stadium Version 2026', price: 2900, image: 'https://images.pexels.com/photos/16678677/pexels-photo-16678677.jpeg?auto=compress&cs=tinysrgb&w=800', badge: 'HOT' },
+    { id: 6, category: 'gk_training', name: 'ถุงมือผู้รักษาประตู Pro Latex Grip 4mm', price: 3200, image: 'https://images.pexels.com/photos/10923080/pexels-photo-10923080.jpeg?auto=compress&cs=tinysrgb&w=800', badge: 'PRO' },
+    { id: 7, category: 'gk_training', name: 'ลูกฟุตบอลแข่งขัน มาตรฐาน FIFA Quality Pro', price: 4200, image: 'https://images.pexels.com/photos/701773/pexels-photo-701773.jpeg?auto=compress&cs=tinysrgb&w=800', badge: 'MATCH BALL' },
+    { id: 8, category: 'deals', name: 'Speed Boot 2025 Clearance', price: 3500, originalPrice: 7500, image: 'https://images.pexels.com/photos/10923069/pexels-photo-10923069.jpeg?auto=compress&cs=tinysrgb&w=800', badge: 'SAVE 53%' }
+];
+
+// PAGE ID -> FILE NAME MAP (used for cross-page navigation)
+const PAGE_URLS = {
+    home: 'index.html',
+    boots: 'boots.html',
+    jerseys: 'jerseys.html',
+    gk_training: 'gk-training.html',
+    deals: 'deals.html',
+    guide: 'guide.html',
+    blog: 'blog.html',
+    about: 'about.html',
+    checkout: 'checkout.html',
+    tracking: 'tracking.html'
+};
+
+// CART STATE (persisted in localStorage so it survives page navigation)
+const CART_STORAGE_KEY = 'kickoffpro_cart';
+
+function loadCart() {
+    try {
+        const raw = localStorage.getItem(CART_STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+        console.error('Failed to load cart from storage', e);
+        return [];
+    }
+}
+
+function saveCart() {
+    try {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    } catch (e) {
+        console.error('Failed to save cart to storage', e);
+    }
+}
+
+let cart = loadCart();
+
+// RENDER PRODUCTS
+function renderProducts() {
+    const homeGrid = document.getElementById('home-products-grid');
+    const bootsGrid = document.getElementById('boots-grid');
+    const jerseysGrid = document.getElementById('jerseys-grid');
+    const gkGrid = document.getElementById('gk-grid');
+    const dealsGrid = document.getElementById('deals-grid');
+
+    if (homeGrid) homeGrid.innerHTML = products.map(p => createProductCard(p)).join('');
+    if (bootsGrid) bootsGrid.innerHTML = products.filter(p => p.category === 'boots').map(p => createProductCard(p)).join('');
+    if (jerseysGrid) jerseysGrid.innerHTML = products.filter(p => p.category === 'jerseys').map(p => createProductCard(p)).join('');
+    if (gkGrid) gkGrid.innerHTML = products.filter(p => p.category === 'gk_training').map(p => createProductCard(p)).join('');
+    if (dealsGrid) dealsGrid.innerHTML = products.filter(p => p.category === 'deals' || p.originalPrice).map(p => createProductCard(p)).join('');
+}
+
+function createProductCard(p) {
+    return `
+        <div class="bg-brand-card border border-brand-border rounded-2xl p-4 flex flex-col justify-between hover:border-brand-lime transition duration-300 group">
+            <div>
+                <div class="relative overflow-hidden rounded-xl h-48 bg-slate-900 mb-3">
+                    <span class="absolute top-2 left-2 z-10 px-2.5 py-1 bg-brand-dark/90 border border-brand-lime/40 text-brand-lime text-[10px] font-black rounded-lg">${p.badge}</span>
+                    <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <h4 class="font-bold text-white text-sm line-clamp-2 mb-1">${p.name}</h4>
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="text-brand-lime font-black text-lg">฿${p.price.toLocaleString()}</span>
+                    ${p.originalPrice ? `<span class="text-slate-500 line-through text-xs">฿${p.originalPrice.toLocaleString()}</span>` : ''}
+                </div>
+            </div>
+            <button onclick="addToCart(${p.id})" class="w-full py-2.5 bg-brand-dark hover:bg-brand-lime hover:text-black border border-brand-border text-white text-xs font-bold rounded-xl transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-cart-plus"></i> เพิ่มลงตะกร้า
+            </button>
+        </div>
+    `;
+}
+
+// BOOTS FILTER FUNCTION (only used on boots.html)
+function filterBoots(stud, evt) {
+    document.querySelectorAll('.boot-filter-btn').forEach(b => {
+        b.classList.remove('bg-brand-lime', 'text-black');
+        b.classList.add('bg-brand-dark', 'text-slate-300');
+    });
+    const btn = (evt && evt.target) || (window.event && window.event.target);
+    if (btn) {
+        btn.classList.remove('bg-brand-dark', 'text-slate-300');
+        btn.classList.add('bg-brand-lime', 'text-black');
+    }
+
+    const filtered = stud === 'all' ? products.filter(p => p.category === 'boots') : products.filter(p => p.category === 'boots' && p.stud === stud);
+    const grid = document.getElementById('boots-grid');
+    if (grid) grid.innerHTML = filtered.map(p => createProductCard(p)).join('');
+}
+
+// CROSS-PAGE NAVIGATION
+function navigateTo(pageId) {
+    const url = PAGE_URLS[pageId];
+    if (!url) return;
+    window.location.href = url;
+}
+
+// Highlight the current page's nav link (based on <body data-page="...">)
+function highlightActiveNav() {
+    const currentPage = document.body.dataset.page;
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('text-brand-lime', 'font-bold');
+        btn.classList.add('text-slate-300');
+    });
+    const activeNav = document.getElementById(`nav-${currentPage}`);
+    if (activeNav) {
+        activeNav.classList.remove('text-slate-300');
+        activeNav.classList.add('text-brand-lime', 'font-bold');
+    }
+}
+
+// JERSEY CUSTOMIZER LIVE PREVIEW (only present on jerseys.html)
+function updateJerseyPreview() {
+    const nameInput = document.getElementById('custom-name-input');
+    const numberInput = document.getElementById('custom-number-input');
+    const colorInput = document.getElementById('custom-color-input');
+    const nameEl = document.getElementById('jersey-name-preview');
+    const numEl = document.getElementById('jersey-number-preview');
+
+    if (!nameInput || !numberInput || !colorInput || !nameEl || !numEl) return;
+
+    const name = nameInput.value || 'NAME';
+    const number = numberInput.value || '00';
+    const color = colorInput.value;
+
+    nameEl.textContent = name.toUpperCase();
+    numEl.textContent = number;
+
+    nameEl.style.color = color;
+    numEl.style.color = color;
+}
+
+// CART LOGIC
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    const existing = cart.find(item => item.id === productId);
+    if (existing) {
+        existing.qty++;
+    } else {
+        cart.push({ ...product, qty: 1 });
+    }
+    saveCart();
+    updateCartUI();
+    toggleCartDrawer();
+}
+
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id != productId);
+    saveCart();
+    updateCartUI();
+}
+
+function updateCartUI() {
+    const countBadge = document.getElementById('cart-count-badge');
+    const itemsContainer = document.getElementById('cart-drawer-items');
+    const totalPriceEl = document.getElementById('cart-total-price');
+
+    const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+    if (countBadge) countBadge.textContent = totalQty;
+    if (totalPriceEl) totalPriceEl.textContent = `฿${totalPrice.toLocaleString()}`;
+
+    if (itemsContainer) {
+        itemsContainer.innerHTML = cart.length === 0 ?
+            '<p class="text-slate-500 text-center py-8 text-sm">ยังไม่มีสินค้าในตะกร้า</p>' :
+            cart.map(item => `
+                <div class="flex items-center gap-3 bg-brand-dark p-3 rounded-xl border border-brand-border">
+                    <img src="${item.image}" class="w-12 h-12 rounded-lg object-cover">
+                    <div class="flex-grow">
+                        <h5 class="text-xs font-bold text-white">${item.name}</h5>
+                        <span class="text-brand-lime font-bold text-xs">฿${item.price.toLocaleString()} x ${item.qty}</span>
+                    </div>
+                    <button onclick="removeFromCart('${item.id}')" title="ลบสินค้า" class="w-8 h-8 flex-shrink-0 rounded-lg bg-brand-card border border-brand-border flex items-center justify-center text-slate-400 hover:text-brand-accent hover:border-brand-accent transition">
+                        <i class="fa-solid fa-trash-can text-xs"></i>
+                    </button>
+                </div>
+            `).join('');
+    }
+
+    // Update Checkout Page
+    const checkoutList = document.getElementById('checkout-items-list');
+    const checkoutSubtotal = document.getElementById('checkout-subtotal');
+    const checkoutTotal = document.getElementById('checkout-total');
+
+    if (checkoutList) {
+        checkoutList.innerHTML = cart.map(item => `
+            <div class="py-3 flex justify-between items-center text-sm gap-3">
+                <div class="flex-grow">
+                    <h4 class="font-bold text-white">${item.name}</h4>
+                    <span class="text-xs text-slate-400">จำนวน: ${item.qty} ชิ้น</span>
+                </div>
+                <span class="font-bold text-brand-lime whitespace-nowrap">฿${(item.price * item.qty).toLocaleString()}</span>
+                <button onclick="removeFromCart('${item.id}')" title="ลบสินค้า" class="w-8 h-8 flex-shrink-0 rounded-lg bg-brand-card border border-brand-border flex items-center justify-center text-slate-400 hover:text-brand-accent hover:border-brand-accent transition">
+                    <i class="fa-solid fa-trash-can text-xs"></i>
+                </button>
+            </div>
+        `).join('');
+        if (checkoutSubtotal) checkoutSubtotal.textContent = `฿${totalPrice.toLocaleString()}`;
+        if (checkoutTotal) checkoutTotal.textContent = `฿${totalPrice.toLocaleString()}`;
+    }
+}
+
+function toggleCartDrawer() {
+    const drawer = document.getElementById('cart-drawer');
+    if (!drawer) return;
+    const panel = drawer.querySelector('.id-cart-panel');
+    if (drawer.classList.contains('opacity-0')) {
+        drawer.classList.remove('opacity-0', 'pointer-events-none');
+        panel.classList.remove('translate-x-full');
+    } else {
+        drawer.classList.add('opacity-0', 'pointer-events-none');
+        panel.classList.add('translate-x-full');
+    }
+}
+
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if (menu) menu.classList.toggle('hidden');
+}
+
+function processOrder() {
+    if (cart.length === 0) {
+        alert('โปรดเลือกสินค้าลงตะกร้าก่อนทำการสั่งซื้อ');
+        return;
+    }
+    alert('🎉 ขอบคุณสำหรับการสั่งซื้อ! ระบบได้รับรายการของคุณแล้ว หมายเลขคำสั่งซื้อของคุณคือ: KICK-2026-99');
+    cart = [];
+    saveCart();
+    updateCartUI();
+    navigateTo('tracking');
+}
+
+function searchTracking() {
+    const input = document.getElementById('tracking-input').value;
+    if (!input) {
+        alert('โปรดระบุหมายเลขคำสั่งซื้อ');
+        return;
+    }
+    alert(`กำลังค้นหาข้อมูลพัสดุสำหรับ: ${input}`);
+}
+
+// INITIALIZE APP (runs on every page)
+document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+    updateCartUI();
+    updateJerseyPreview();
+    highlightActiveNav();
+});
+
+    </script>
+</body>
+</html>
