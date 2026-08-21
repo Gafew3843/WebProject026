@@ -208,8 +208,8 @@ body {
             </div>
             <div>
                 <h4 class="font-bold text-white mb-3 text-xs uppercase tracking-wider">ติดต่อเรา</h4>
-                <p class="text-xs"><i class="fa-solid fa-phone mr-2 text-brand-lime"></i>02-123-4567</p>
-                <p class="text-xs mt-1"><i class="fa-solid fa-envelope mr-2 text-brand-lime"></i>support@kickoffpro.com</p>
+                <p class="text-xs"><i class="fa-solid fa-phone mr-2 text-brand-lime"></i>082-642-8156</p>
+                <p class="text-xs mt-1"><i class="fa-solid fa-envelope mr-2 text-brand-lime"></i>b8tl3eyi@gmail.com</p>
                 <div class="flex gap-3 text-lg mt-4 text-slate-300">
                     <a href="#" class="hover:text-brand-lime"><i class="fa-brands fa-facebook"></i></a>
                     <a href="#" class="hover:text-brand-lime"><i class="fa-brands fa-line"></i></a>
@@ -232,14 +232,14 @@ body {
 
 // PRODUCTS DATABASE
 const products = [
-    { id: 1, category: 'boots', stud: 'FG', name: 'Speed Pro Ultra FG', price: 8500, image: 'https://images.pexels.com/photos/10923069/pexels-photo-10923069.jpeg?auto=compress&cs=tinysrgb&w=800', badge: 'NEW 2026' },
-    { id: 2, category: 'boots', stud: 'AG', name: 'Control Master AG', price: 7200, image: 'https://images.pexels.com/photos/10923069/pexels-photo-10923069.jpeg?auto=compress&cs=tinysrgb&w=800', badge: 'BESTSELLER' },
-    { id: 3, category: 'boots', stud: 'TF', name: 'Turf Striker TF', price: 3900, image: 'https://images.pexels.com/photos/10923069/pexels-photo-10923069.jpeg?auto=compress&cs=tinysrgb&w=800', badge: 'POPULAR' },
-    { id: 4, category: 'jerseys', name: 'เสื้อแข่งสโมสร ลีกอันดับ 1 (Player Version)', price: 4600, image: 'https://images.pexels.com/photos/16678677/pexels-photo-16678677.jpeg?auto=compress&cs=tinysrgb&w=800', badge: 'OFFICIAL' },
-    { id: 5, category: 'jerseys', name: 'เสื้อแข่งเหย้า Stadium Version 2026', price: 2900, image: 'https://images.pexels.com/photos/16678677/pexels-photo-16678677.jpeg?auto=compress&cs=tinysrgb&w=800', badge: 'HOT' },
-    { id: 6, category: 'gk_training', name: 'ONE OG1 Midnight MD Kids Goalkeeper Gloves', price: 1342, image: 'ONEOG1.jpg?auto=compress&cs=tinysrgb&w=800', badge: 'PRO' },
-    { id: 7, category: 'gk_training', name: 'ลูกฟุตบอล เทอร์โมบอนด์ เบอร์ 5 รุ่น FIFA Quality Pro', price: 1000, image: 'FootBall5.jpg?auto=compress&cs=tinysrgb&w=800', badge: 'MATCH BALL' },
-    { id: 8, category: 'deals', name: 'Speed Boot 2025 Clearance', price: 3500, originalPrice: 7500, image: 'https://images.pexels.com/photos/10923069/pexels-photo-10923069.jpeg?auto=compress&cs=tinysrgb&w=800', badge: 'SAVE 53%' }
+    { id: 1, category: 'boots', stud: 'FG', name: 'Speed Pro Ultra FG', price: 5000, image: 'BootFG.jpg', badge: 'NEW 2026' },
+    { id: 2, category: 'boots', stud: 'AG', name: 'KELME Master 1.5 AG', price: 2500, image: 'BootAG.jpg', badge: 'BESTSELLER' },
+    { id: 3, category: 'boots', stud: 'TF', name: 'FUTBOLX Striker TF', price: 1090, image: 'BootTF.jpg', badge: 'POPULAR' },
+    { id: 4, category: 'jerseys', name: 'เสื้อ Liverpool Home (Player Version) 2026/27', price: 4600, image: 'OP.jpg', badge: 'OFFICIAL' },
+    { id: 5, category: 'jerseys', name: 'เสื้อแข่งผู้ชายทีมอินเตอร์ มิลาน ชุดเหย้า เกรด Stadium ฤดูกาล 2026/27 สีฟ้า', price: 2900, image: 'betsson.jpg', badge: 'HOT' },
+    { id: 6, category: 'gk_training', name: 'ONE OG1 Midnight MD Kids Goalkeeper Gloves', price: 1342, image: 'ONEOG1.jpg', badge: 'PRO' },
+    { id: 7, category: 'gk_training', name: 'ลูกฟุตบอล เทอร์โมบอนด์ เบอร์ 5 รุ่น FIFA Quality Pro', price: 1000, image: 'FootBall5.jpg', badge: 'MATCH BALL' },
+    { id: 8, category: 'deals', name: 'Nike Jr. Mercurial Vapor 17 Pro x', price: 4560, originalPrice: 5700, image: 'JR.jpg', badge: 'SAVE 20%' }
 ];
 
 // PAGE ID -> FILE NAME MAP (used for cross-page navigation)
@@ -494,6 +494,194 @@ document.addEventListener('DOMContentLoaded', () => {
     highlightActiveNav();
 });
 
-    </script>
+    
+// ============================================================
+// KICKOFF PRO — AI ASSISTANT (rule-based FAQ chatbot)
+// ไม่เชื่อมต่อ API ภายนอกใดๆ ทั้งสิ้น ทำงานได้ 100% แบบ static
+// ต้องการแก้/เพิ่มคำถาม-คำตอบ ให้แก้ที่ CHAT_FAQ ด้านล่างนี้
+// ============================================================
+const CHAT_FAQ = [
+    {
+        keywords: ['ค่าส่ง', 'จัดส่ง', 'ส่งฟรี', 'ขนส่ง', 'shipping'],
+        question: 'ค่าจัดส่งเท่าไหร่?',
+        answer: 'จัดส่งฟรีทั่วไทยสำหรับคำสั่งซื้อครบ 1,500 บาทขึ้นไปครับ ต่ำกว่านั้นคิดค่าส่งมาตรฐาน 50 บาท จัดส่งผ่าน Kerry/Flash โดยทั่วไปถึงภายใน 2-4 วันทำการ'
+    },
+    {
+        keywords: ['ไซส์', 'size', 'เบอร์รองเท้า', 'ขนาด', 'เลือกไซส์'],
+        question: 'เลือกไซส์รองเท้ายังไง?',
+        answer: 'แนะนำให้ดูตารางไซส์ในหน้า "คู่มือเลือก" ของเราครับ วัดความยาวเท้าเป็น ซม. แล้วเทียบตาราง EU/UK/US ได้เลย ถ้าเท้าใหญ่กว่ามาตรฐานแนะนำสั่งไซส์ใหญ่กว่าปกติครึ่งไซส์'
+    },
+    {
+        keywords: ['คืนสินค้า', 'เปลี่ยนสินค้า', 'return', 'refund', 'คืนเงิน'],
+        question: 'นโยบายคืน/เปลี่ยนสินค้า?',
+        answer: 'เปลี่ยน/คืนสินค้าได้ภายใน 7 วันหลังได้รับสินค้า สินค้าต้องอยู่ในสภาพเดิม ไม่ผ่านการใช้งาน พร้อมป้ายและใบเสร็จครบถ้วนครับ'
+    },
+    {
+        keywords: ['ชำระเงิน', 'จ่ายเงิน', 'บัตรเครดิต', 'โอนเงิน', 'พร้อมเพย์', 'payment'],
+        question: 'ชำระเงินช่องทางไหนได้บ้าง?',
+        answer: 'รองรับบัตรเครดิต/เดบิต, โอนผ่านพร้อมเพย์, และเก็บเงินปลายทาง (COD) สำหรับบางพื้นที่ครับ'
+    },
+    {
+        keywords: ['ติดตามพัสดุ', 'พัสดุ', 'tracking', 'สถานะ', 'ส่งถึงไหน'],
+        question: 'ติดตามพัสดุยังไง?',
+        answer: 'เข้าไปที่หน้า "ติดตามพัสดุ" แล้วกรอกหมายเลขคำสั่งซื้อที่ได้รับทางอีเมลได้เลยครับ'
+    },
+    {
+        keywords: ['สาขา', 'หน้าร้าน', 'ที่อยู่', 'location', 'address'],
+        question: 'มีหน้าร้านไหม?',
+        answer: 'มีครับ ดูที่ตั้งสาขาทั้งหมดได้ที่หน้า "สาขา" เลยครับ'
+    },
+    {
+        keywords: ['ติดต่อ', 'เบอร์โทร', 'อีเมล', 'contact', 'phone', 'email'],
+        question: 'ติดต่อร้านได้ทางไหน?',
+        answer: 'โทร 082-642-8156 หรืออีเมล b8tl3eyi@gmail.com ได้เลยครับ ทีมงานตอบกลับภายใน 24 ชม.'
+    },
+    {
+        keywords: ['ของแท้', 'แท้', 'authentic', 'genuine'],
+        question: 'สินค้าเป็นของแท้ไหม?',
+        answer: 'สินค้าทุกชิ้นเป็นของแท้ 100% รับประกันความแท้ พร้อมใบรับประกันจากร้านครับ'
+    }
+];
+
+const CHAT_FALLBACK_ANSWER = 'ขอโทษครับ ผมยังไม่เข้าใจคำถามนี้ ลองเลือกจากปุ่มคำถามด่วนด้านล่าง หรือติดต่อทีมงานโดยตรงที่ 082-642-8156 / b8tl3eyi@gmail.com ได้เลยครับ';
+
+function toggleChatWidget() {
+    const panel = document.getElementById('chat-widget-panel');
+    const icon = document.getElementById('chat-toggle-icon');
+    if (!panel) return;
+
+    const isHidden = panel.classList.contains('hidden');
+    if (isHidden) {
+        panel.classList.remove('hidden');
+        panel.classList.add('flex');
+        icon.classList.remove('fa-comment-dots');
+        icon.classList.add('fa-xmark');
+        if (document.getElementById('chat-messages').children.length === 0) {
+            initChatWidget();
+        }
+    } else {
+        panel.classList.add('hidden');
+        panel.classList.remove('flex');
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-comment-dots');
+    }
+}
+
+function initChatWidget() {
+    appendChatMessage('bot', 'สวัสดีครับ! ผมเป็นผู้ช่วย KICKOFF PRO 🤖 มีอะไรให้ช่วยไหมครับ? ลองเลือกคำถามด้านล่าง หรือพิมพ์ถามได้เลย');
+    renderChatQuickReplies();
+}
+
+function renderChatQuickReplies() {
+    const container = document.getElementById('chat-quick-replies');
+    if (!container) return;
+    container.innerHTML = CHAT_FAQ.map((item, idx) => `
+        <button onclick="askChatQuestion(${idx})" class="text-[11px] px-3 py-1.5 rounded-full bg-brand-dark border border-brand-border text-slate-300 hover:border-brand-lime hover:text-brand-lime transition">
+            ${item.question}
+        </button>
+    `).join('');
+}
+
+function askChatQuestion(idx) {
+    const item = CHAT_FAQ[idx];
+    if (!item) return;
+    appendChatMessage('user', item.question);
+    setTimeout(() => appendChatMessage('bot', item.answer), 350);
+}
+
+function handleChatSubmit(evt) {
+    evt.preventDefault();
+    const input = document.getElementById('chat-input');
+    const text = input.value.trim();
+    if (!text) return;
+
+    appendChatMessage('user', text);
+    input.value = '';
+
+    setTimeout(() => {
+        const answer = findChatAnswer(text);
+        appendChatMessage('bot', answer);
+    }, 350);
+}
+
+function findChatAnswer(userText) {
+    const normalized = userText.toLowerCase();
+    for (const item of CHAT_FAQ) {
+        for (const kw of item.keywords) {
+            if (normalized.includes(kw.toLowerCase())) {
+                return item.answer;
+            }
+        }
+    }
+    return CHAT_FALLBACK_ANSWER;
+}
+
+function appendChatMessage(sender, text) {
+    const container = document.getElementById('chat-messages');
+    if (!container) return;
+
+    const bubble = document.createElement('div');
+    if (sender === 'bot') {
+        bubble.className = 'flex items-start gap-2';
+        bubble.innerHTML = `
+            <div class="w-6 h-6 rounded-full bg-brand-lime flex-shrink-0 flex items-center justify-center">
+                <i class="fa-solid fa-robot text-black text-[10px]"></i>
+            </div>
+            <div class="bg-brand-dark border border-brand-border rounded-xl rounded-tl-none px-3 py-2 text-slate-200 text-xs max-w-[80%]">${text}</div>
+        `;
+    } else {
+        bubble.className = 'flex justify-end';
+        bubble.innerHTML = `
+            <div class="bg-brand-lime text-black rounded-xl rounded-tr-none px-3 py-2 text-xs max-w-[80%] font-medium">${text}</div>
+        `;
+    }
+    container.appendChild(bubble);
+    container.scrollTop = container.scrollHeight;
+}
+
+</script>
+
+    <!-- ============================================================
+         KICKOFF PRO — AI ASSISTANT (แชทตอบคำถามอัตโนมัติ)
+         ไม่ได้เชื่อมต่อ AI API จริง (เพื่อความปลอดภัย ไม่ต้องใช้ API key)
+         ตอบจากชุดคำถาม-คำตอบที่กำหนดไว้ล่วงหน้าใน CHAT_FAQ (ในสคริปต์ด้านล่าง)
+         ============================================================ -->
+    <button id="chat-toggle-btn" onclick="toggleChatWidget()" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-brand-lime text-black shadow-lg shadow-brand-lime/30 flex items-center justify-center hover:scale-110 transition-transform">
+        <i id="chat-toggle-icon" class="fa-solid fa-comment-dots text-xl"></i>
+    </button>
+
+    <div id="chat-widget-panel" class="fixed bottom-24 right-6 z-50 w-[90vw] max-w-sm h-[70vh] max-h-[520px] bg-brand-card border border-brand-border rounded-2xl shadow-2xl flex-col hidden overflow-hidden">
+        <div class="bg-brand-dark border-b border-brand-border px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-brand-lime flex items-center justify-center">
+                    <i class="fa-solid fa-robot text-black text-sm"></i>
+                </div>
+                <div>
+                    <p class="text-white text-sm font-bold leading-tight">KICKOFF Assistant</p>
+                    <p class="text-[10px] text-slate-400 leading-tight">ตอบคำถามอัตโนมัติ 24 ชม.</p>
+                </div>
+            </div>
+            <button onclick="toggleChatWidget()" class="text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div id="chat-messages" class="flex-grow overflow-y-auto px-4 py-4 space-y-3 text-sm">
+            <!-- ข้อความจะถูกเติมด้วย JS -->
+        </div>
+
+        <div id="chat-quick-replies" class="px-4 pb-2 flex flex-wrap gap-2">
+            <!-- ปุ่มคำถามด่วนจะถูกเติมด้วย JS -->
+        </div>
+
+        <form id="chat-input-form" onsubmit="handleChatSubmit(event)" class="border-t border-brand-border p-3 flex gap-2">
+            <input id="chat-input" type="text" placeholder="พิมพ์คำถาม เช่น ค่าส่ง, ไซส์, คืนสินค้า..." autocomplete="off"
+                class="flex-grow bg-brand-dark border border-brand-border rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-lime">
+            <button type="submit" class="w-9 h-9 flex-shrink-0 rounded-xl bg-brand-lime text-black flex items-center justify-center hover:bg-brand-limeHover">
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+        </form>
+    </div>
+
 </body>
 </html>
